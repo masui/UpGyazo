@@ -110,7 +110,7 @@ if __FILE__ == $0 then
         f.puts "abcdefg"
       }
       assert File.exist?(file)
-      id = upload_and_dlete(file)
+      id = upload_and_delete(file)
       assert id.length == 32
       assert !File.exist?(file)
     end
