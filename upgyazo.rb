@@ -93,7 +93,7 @@ if __FILE__ == $0 then
 
   class TestGyazz < MiniTest::Test
     def test_test
-      assert 1 == 2
+      assert 1 == 1
     end
     
     def test_wiki_methods
