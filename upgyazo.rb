@@ -126,12 +126,12 @@ if __FILE__ == $0 then
     end
 
     def test_upload
-      file = "/tmp/junk.png"
-      system "/bin/cp ./test.png #{file}"
-      assert File.exist?(file)
-      id = @gyazoupload.upload_and_delete(file)
+      tmpfile = "/tmp/junk.png"
+      system "/bin/cp ./test.png #{tmpfile}"
+      assert File.exist?(tmpfile)
+      id = @gyazoupload.upload_and_delete(tmpfile)
       assert id =~ /^[0-9a-f]{32}$/i
-      assert !File.exist?(file)
+      assert !File.exist?(tmpfile)
     end
   end
 end
