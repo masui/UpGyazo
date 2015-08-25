@@ -1,5 +1,7 @@
 # ファイルをアップロードしてGyazoに登録
 
+[![Circle CI](https://circleci.com/gh/masui/UpGyazo.svg?style=svg)](https://circleci.com/gh/masui/UpGyazo)
+
 Usage: ```% ruby upgyazo ファイル```
 
 * 文書や写真のサムネをGyazoにアップロードして本体は```masui.sfc.keio.ac.jp```に格納する。
