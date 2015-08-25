@@ -62,7 +62,7 @@ class GyazoUpload
     $1
   end
 
-  def dst(file,gyazoid)
+  def dst(file)
     file =~ /\.([a-zA-Z]*)$/
     ext = $1
     hash = Digest::MD5.new.update(File.read(file)).to_s
@@ -81,7 +81,7 @@ class GyazoUpload
     thumbfile = generate_thumbnail(file)    # いろんな方法でサムネイル生成
     STDERR.puts "Uploading to Gyazo..."
     gyazoid = upload_and_delete(thumbfile)  # サムネイルをGyazoにアップロードしてサムネイルファイルは削除
-    (dstfile, dsturl) = dst(file,gyazoid)   # オリジナルファイルのコピー先ファイル名, URLを取得
+    (dstfile, dsturl) = dst(file)   # オリジナルファイルのコピー先ファイル名, URLを取得
     #
     # クラウドにオリジナルファイルをコピー
     #
@@ -121,8 +121,8 @@ if __FILE__ == $0 then
     end
     
     def test_dst
-      (dstfile, dsturl) = @gyazoupload.dst("./test.png","12345")
-      assert dstfile =~ /1\/2/
+      (dstfile, dsturl) = @gyazoupload.dst("./test.png")
+      assert dstfile =~ /e\/5/
     end
 
     def test_upload
