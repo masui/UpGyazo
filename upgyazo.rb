@@ -96,7 +96,7 @@ if __FILE__ == $0 then
   #
   class TestGyazoUpload < MiniTest::Test
     def setup
-      @gyazoupload = GyazoUpload.new "30d729ffde5972b06005241044db133d583f83dc03145de27546888042e9e7fb" # テストアカウント
+      @gyazoupload = GyazoUpload.new "e56a29f97986aa425d722676afe9f38fb4b6aaae10f0b93454e37d351c565bd7" # テストアカウント
     end
     
     def tet_dst
@@ -109,7 +109,7 @@ if __FILE__ == $0 then
       system "/bin/cp ./test.png #{file}"
       assert File.exist?(file)
       id = @gyazoupload.upload_and_delete(file)
-      assert id.length == 32
+      assert id =~ /^[0-9a-f]{32}$/i
       assert !File.exist?(file)
     end
   end
