@@ -88,6 +88,9 @@ class GyazoUpload
   end
 end
 
+# .profileにこういうのを書いておく
+# export GYAZO_TOKEN=0123456789...
+
 GYAZO_TOKEN=ENV['GYAZO_TOKEN']
 exit if GYAZO_TOKEN.nil?
 upload = GyazoUpload.new GYAZO_TOKEN
