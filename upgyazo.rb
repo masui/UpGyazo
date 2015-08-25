@@ -115,8 +115,12 @@ if __FILE__ == $0 then
     def test_gyazotoken
       assert !@gyazo_token.nil?
     end
+
+    def test_jpeg
+      assert !@gyazoupload.jpeg?("./test.png")
+    end
     
-    def tet_dst
+    def test_dst
       (dstfile, dsturl) = @gyazoupload.dst("./test.png","12345")
       assert dstfille =~ /1\/2/
     end
