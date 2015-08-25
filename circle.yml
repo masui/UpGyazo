@@ -12,4 +12,3 @@ dependencies:
 test:
   override:
     - bundle exec ruby upgyazo.rb
-

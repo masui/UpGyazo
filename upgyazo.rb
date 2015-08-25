@@ -91,7 +91,10 @@ end
 if __FILE__ == $0 then
   require 'minitest/autorun'
 
-  class TestGyazz < MiniTest::Test
+  #
+  # convertとかのテストはパスしないはず。入れたいけど?
+  #
+  class TestGyazoUpload < MiniTest::Test
     def test_test
       assert 1 == 1
     end
