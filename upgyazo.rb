@@ -20,9 +20,13 @@ class GyazoUpload
     @gyazo = Gyazo::Client.new token
   end
 
+  def jpeg?(file)
+    file =~ /\.(jpg|jpeg)$/i # デジカメのJPEGなど
+  end
+
   def modtime(file)
     time = File.mtime(file)
-    if file =~ /\.(jpg|jpeg)$/i then # デジカメのJPEGなど
+    if jpeg?(file)
       begin
         exif = EXIFR::JPEG.new(file).exif.to_hash
         t = exif[:date_time_original].to_s
@@ -38,7 +42,7 @@ class GyazoUpload
     #
     # サムネ生成
     #
-    if file =~ /\.(jpg|jpeg)$/i then # デジカメのJPEGなど
+    if jpeg?(file)
       system "convert -resize 400x '#{file}' #{thumbfile}"
     else
       system "qlmanage -t -o /tmp -s 200 #{file} > /dev/null 2> /dev/null"
