@@ -53,7 +53,7 @@ class GyazoUpload
     $1
   end
 
-  def dest(file,gyazoid)
+  def dst(file,gyazoid)
     file =~ /\.([a-zA-Z]*)$/
     ext = $1
     hash = Digest::MD5.new.update(File.read(file)).to_s
@@ -69,7 +69,7 @@ class GyazoUpload
     thumbfile = generate_thumbnail(file)    # サムネイル生成
     STDERR.puts "Uploading to Gyazo..."
     gyazoid = upload_and_delete(thumbfile)  # アップロードして削除
-    (dstfile, dsturl) = dest(file,gyazoid)  # コピー先ファイル名, URLを取得
+    (dstfile, dsturl) = dst(file,gyazoid)  # コピー先ファイル名, URLを取得
     #
     # ファイルをコピー
     #
@@ -98,9 +98,10 @@ if __FILE__ == $0 then
     def test_test
       assert 1 == 1
     end
-    
-    def test_wiki_methods
-      true
+
+    def tet_dst
+      (dstfile, dsturl) = dst("./upgyazo.rb","12345")
+      assert dstfille =~ /1\/2/
     end
   end
 end
