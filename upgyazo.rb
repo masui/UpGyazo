@@ -92,8 +92,8 @@ if __FILE__ == $0 then
   require 'minitest/autorun'
 
   class TestGyazz < MiniTest::Test
-    def test_version
-      true
+    def test_test
+      assert 1 == 2
     end
     
     def test_wiki_methods
