@@ -96,7 +96,7 @@ if __FILE__ == $0 then
   #
   class TestGyazoUpload < MiniTest::Test
     def setup
-      @gyazoupload = GyazoUpload.new "3d271909f82ce271c3c72605b3b098f4fb65b6437905553016308e26e2da85ce"
+      @gyazoupload = GyazoUpload.new "30d729ffde5972b06005241044db133d583f83dc03145de27546888042e9e7fb" # テストアカウント
     end
     
     def tet_dst
