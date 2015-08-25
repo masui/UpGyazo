@@ -1,0 +1,2 @@
+#!/bin/sh
+pushd /var/www/html/master.gyazo.com/current/; RAILS_ENV=staging bundle exec rails runner /home/nota/masui/register.rb "$1" "$2" "$3"; popd
