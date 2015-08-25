@@ -103,5 +103,16 @@ if __FILE__ == $0 then
       (dstfile, dsturl) = dst("./upgyazo.rb","12345")
       assert dstfille =~ /1\/2/
     end
+
+    def test_upload
+      file = "/tmp/testupload"
+      File.open(file,"w"){ |f|
+        f.puts "abcdefg"
+      }
+      assert File.exist?(file)
+      id = upload_and_dlete(file)
+      assert id.length == 32
+      assert !File.exist?(file)
+    end
   end
 end
