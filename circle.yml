@@ -7,3 +7,8 @@ dependencies:
 #test:
 #  override:
 #    - bundle exec rake test
+
+test:
+  override:
+    - bundle exec upgyazo.rb
+    
