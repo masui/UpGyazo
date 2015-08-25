@@ -95,22 +95,20 @@ if __FILE__ == $0 then
   # convertとかのテストはパスしないはず。入れたいけど?
   #
   class TestGyazoUpload < MiniTest::Test
-    def test_test
-      assert 1 == 1
+    def setup
+      @gyazoupload = GyazoUpload.new "3d271909f82ce271c3c72605b3b098f4fb65b6437905553016308e26e2da85ce"
     end
-
+    
     def tet_dst
-      (dstfile, dsturl) = dst("./upgyazo.rb","12345")
+      (dstfile, dsturl) = @gyazoupload.dst("./test.png","12345")
       assert dstfille =~ /1\/2/
     end
 
     def test_upload
-      file = "/tmp/testupload"
-      File.open(file,"w"){ |f|
-        f.puts "abcdefg"
-      }
+      file = "/tmp/junk.png"
+      system "/bin/cp ./test.png #{file}"
       assert File.exist?(file)
-      id = upload_and_delete(file)
+      id = @gyazoupload.upload_and_delete(file)
       assert id.length == 32
       assert !File.exist?(file)
     end
