@@ -89,5 +89,15 @@ class GyazoUpload
 end
 
 if __FILE__ == $0 then
-  puts 'test'
+  require 'minitest/autorun'
+
+  class TestGyazz < MiniTest::Test
+    def test_version
+      true
+    end
+    
+    def test_wiki_methods
+      true
+    end
+  end
 end
