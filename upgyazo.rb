@@ -122,7 +122,7 @@ if __FILE__ == $0 then
     
     def test_dst
       (dstfile, dsturl) = @gyazoupload.dst("./test.png","12345")
-      assert dstfille =~ /1\/2/
+      assert dstfile =~ /1\/2/
     end
 
     def test_upload
