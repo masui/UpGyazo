@@ -109,7 +109,7 @@ if __FILE__ == $0 then
   class TestGyazoUpload < MiniTest::Test
     def setup
       @gyazo_token = ENV['GYAZO_TOKEN'] # CircleCIで設定
-      @gyazoupload = GyazoUpload.new @gyazo_token
+      @g = GyazoUpload.new @gyazo_token
     end
 
     def test_gyazotoken
@@ -117,11 +117,11 @@ if __FILE__ == $0 then
     end
 
     def test_jpeg
-      assert !@gyazoupload.jpeg?("./test.png")
+      assert !@g.jpeg?("./test.png")
     end
     
     def test_dst
-      (dstfile, dsturl) = @gyazoupload.dst("./test.png")
+      (dstfile, dsturl) = @g.dst("./test.png")
       assert dstfile =~ /e\/5/
     end
 
@@ -129,7 +129,7 @@ if __FILE__ == $0 then
       tmpfile = "/tmp/junk.png"
       system "/bin/cp ./test.png #{tmpfile}"
       assert File.exist?(tmpfile)
-      id = @gyazoupload.upload_and_delete(tmpfile)
+      id = @g.upload_and_delete(tmpfile)
       assert id =~ /^[0-9a-f]{32}$/i
       assert !File.exist?(tmpfile)
     end

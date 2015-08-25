@@ -1,6 +1,6 @@
 # ファイルをアップロードしてGyazoに登録
 
-[![Circle CI](https://circleci.com/gh/masui/UpGyazo.svg?style=svg)](https://circleci.com/gh/masui/UpGyazo)
+## 使い方
 
 Usage: ```% ruby upgyazo ファイル```
 
@@ -9,3 +9,12 @@ Usage: ```% ruby upgyazo ファイル```
 * ```~/.profile```などに ```export GYAZO_TOKEN=0123456789...``` などと書いておく
 
 今のところ増井専用だが、こういう方針でいろいろできることを実験する。
+
+## CircleCIとか
+
+よくわからないのだが ```circle.yml``` で自動テストしている。
+
+[![Circle CI](https://circleci.com/gh/masui/UpGyazo.svg?style=svg)](https://circleci.com/gh/masui/UpGyazo)
+
+
+
