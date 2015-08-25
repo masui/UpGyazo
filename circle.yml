@@ -4,6 +4,6 @@ machine:
 dependencies:
   override:
     - bundle install
-test:
-  override:
-    - bundle exec rake test
+#test:
+#  override:
+#    - bundle exec rake test
