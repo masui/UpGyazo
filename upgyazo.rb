@@ -96,7 +96,7 @@ if __FILE__ == $0 then
   #
   class TestGyazoUpload < MiniTest::Test
     def test_test
-      assert 1 == 1
+      assert 1 == 0
     end
     
     def test_wiki_methods
