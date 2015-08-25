@@ -4,6 +4,9 @@
 #
 # GYAZO_TOKEN環境変数にトークンを書いておく
 #
+# CircleCIとかの練習でいろいろ試す
+#   circle.yml に記述しておく
+#
 
 require 'gyazo'
 require 'exifr'
