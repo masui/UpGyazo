@@ -104,7 +104,10 @@ if __FILE__ == $0 then
   #
   class TestGyazoUpload < MiniTest::Test
     def setup
-      @gyazoupload = GyazoUpload.new "e56a29f97986aa425d722676afe9f38fb4b6aaae10f0b93454e37d351c565bd7" # テストアカウント
+      GYAZO_TOKEN=ENV['GYAZO_TOKEN']
+      exit if GYAZO_TOKEN.nil?
+      @gyazoupload = GyazoUpload.new GYAZO_TOKEN
+      # @gyazoupload = GyazoUpload.new "e56a29f97986aa425d722676afe9f38fb4b6aaae10f0b93454e37d351c565bd7" # テストアカウント
     end
     
     def tet_dst
