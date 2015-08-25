@@ -6,6 +6,8 @@
 #
 # CircleCIとかの練習でいろいろ試す
 #   circle.yml に記述しておく
+#   https://circleci.com/gh/masui/UpGyazo でチェック
+#   https://github.com/masui/UpGyazo にも表示される
 #
 
 require 'gyazo'
