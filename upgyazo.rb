@@ -57,24 +57,22 @@ class GyazoUpload
     #
     res = @gyazo.upload file
     File.unlink file
-    url = res['image_id']
-    url =~ /([0-9a-f]{32})/
+    res['image_id'] =~ /([0-9a-f]{32})/
     $1
   end
 
   def dst(file)
-    file =~ /\.([a-zA-Z]*)$/
+    file =~ /\.([a-zA-Z0-9_]*)$/
     ext = $1
     hash = Digest::MD5.new.update(File.read(file)).to_s
-    hash =~ /^(.)(.)/
     [
-      "/Users/masui/data/#{$1}/#{$2}/#{hash}.#{ext}",
-      "http://masui.sfc.keio.ac.jp/masui/data/#{$1}/#{$2}/#{hash}.#{ext}"
+      "/Users/masui/data/#{hash[0]}/#{hash[1]}/#{hash}.#{ext}",
+      "http://masui.sfc.keio.ac.jp/masui/data/#{hash[0]}/#{hash[1]}/#{hash}.#{ext}"
     ]
   end
 
   #
-  # アップロードしたいファイルに関するメインルーチン
+  # ファイルのコピー+アップロード
   #
   def process(file)
     STDERR.puts "Generating thumbnail..."
