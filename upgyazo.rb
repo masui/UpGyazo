@@ -103,10 +103,12 @@ if __FILE__ == $0 then
 
   #
   # convertとかのテストはパスしないはず。入れたいけど?
+  # qlmanage なんてMacでしか動かないからCircleCIではテストできない
+  # ssh呼ぶテストも動かないし
   #
   class TestGyazoUpload < MiniTest::Test
     def setup
-      @gyazo_token = ENV['GYAZO_TOKEN'] # CircleCIで設定
+      @gyazo_token = ENV['GYAZO_TOKEN'] # CircleCIのWebで設定
       @g = GyazoUpload.new @gyazo_token
     end
 
