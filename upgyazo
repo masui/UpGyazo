@@ -1,8 +1,16 @@
+#!/usr/bin/ruby
 # coding: utf-8
+#
+# % upgyazo CIMG0123.img
+#
 
-require './upgyazo'
+prog = $0
+prog = File.readlink(prog) if File.symlink?(prog)
+dir = File.dirname(prog)
 
-# .profileにこういうのを書いておく
+require "#{dir}/upgyazo"
+
+# Gyazo.comの認証のために ~/.profile にこういうのを書いておく
 # export GYAZO_TOKEN=0123456789...
 
 GYAZO_TOKEN=ENV['GYAZO_TOKEN']
