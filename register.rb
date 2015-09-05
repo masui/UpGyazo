@@ -1,6 +1,8 @@
 # coding: utf-8
 #
-# Gyazo.cool環境で動かす
+# Gyazoデータの日付とURLをセットする。
+#  - Gyazo.cool環境で動かす (registerコマンドから呼ぶ)
+#  - Mongoデータを直接操作してるので注意!
 #
 id = ARGV[0]
 time = ARGV[1]
