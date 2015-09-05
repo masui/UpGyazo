@@ -4,9 +4,7 @@
 #  - Gyazo.cool環境で動かす (registerコマンドから呼ぶ)
 #  - Mongoデータを直接操作してるので注意!
 #
-id = ARGV[0]
-time = ARGV[1]
-url = ARGV[2]
+(id, time, url) = ARGV
 exit unless id && time && url
 
 d = Image.find_by(image_id: id)
