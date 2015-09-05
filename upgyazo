@@ -3,6 +3,15 @@
 #
 # % upgyazo CIMG0123.img
 #
+# 画像の場合はサムネをアップ
+# 文書ファイルなどの場合はアイコンをアップ
+#
+
+if ARGV.length == 0
+  STDERR.puts "Upload files to Gyazo"
+  STDERR.puts "Usage: % upgyazo filename"
+  exit
+end
 
 prog = $0
 prog = File.readlink(prog) if File.symlink?(prog)
