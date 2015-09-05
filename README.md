@@ -1,8 +1,8 @@
-# ファイルをアップロードしてGyazoに登録
+# ファイルをアップロードしてサムネをGyazoに登録
 
 ## 使い方
 
-Usage: ```% upgyazo ファイル```
+Usage: ```% upgyazo ファイル {ファイル}```
 
 * 文書や写真のサムネをGyazoにアップロードして本体は```masui.sfc.keio.ac.jp```に格納する。
 * 日付やURLをGyazo APIでセットできないので、Gyazo.cool上の```register```, ```register.rb``` を使う
