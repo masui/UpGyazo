@@ -1,0 +1,33 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    digest (0.0.1)
+    exifr (1.2.3.1)
+    gyazo (2.1.1)
+      httmultiparty
+      httparty
+      json
+    httmultiparty (0.3.16)
+      httparty (>= 0.7.3)
+      mimemagic
+      multipart-post
+    httparty (0.13.7)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
+    json (1.8.3)
+    mimemagic (0.3.0)
+    minitest (5.8.3)
+    multi_xml (0.5.5)
+    multipart-post (2.0.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  digest
+  exifr
+  gyazo
+  minitest
+
+BUNDLED WITH
+   1.10.6
