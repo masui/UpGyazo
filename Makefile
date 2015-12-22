@@ -1,3 +1,2 @@
 test:
 	ruby upgyazo.rb
-
