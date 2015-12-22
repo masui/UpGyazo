@@ -22,8 +22,10 @@ require "#{dir}/upgyazo"
 # Gyazo.comの認証のために ~/.profile にこういうのを書いておく
 # export GYAZO_TOKEN=0123456789...
 
-GYAZO_TOKEN=ENV['GYAZO_TOKEN']
+# GYAZO_TOKEN=ENV['GYAZO_TOKEN']
+GYAZO_TOKEN = 'e1315f020a39112d670f38e412808f9ef291e95fa041923ae14ce51e84427b3e'
 exit if GYAZO_TOKEN.nil?
+
 upload = GyazoUpload.new GYAZO_TOKEN
 
 ARGV.each { |arg|

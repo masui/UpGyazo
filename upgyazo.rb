@@ -14,6 +14,7 @@ require 'gyazo'
 require 'exifr'
 require 'find'
 require 'digest/md5'
+require 'time'
 
 class GyazoUpload
   def initialize(token)
@@ -30,7 +31,7 @@ class GyazoUpload
       begin
         exif = EXIFR::JPEG.new(file).exif.to_hash
         t = exif[:date_time_original].to_s
-        time = t if t !~ /^\s*$/
+        time = Time.parse(t) if t !~ /^\s*$/
       rescue
       end
     end
@@ -55,11 +56,11 @@ class GyazoUpload
     thumbfile
   end
 
-  def upload_and_delete(file)
+  def upload_and_delete(file, params={})
     #
     # アップロードしてID取得, ファイルは消す
     #
-    res = @gyazo.upload file
+    res = @gyazo.upload file, params
     File.unlink file
     res['image_id'] =~ /([0-9a-f]{32})/
     $1
@@ -83,23 +84,25 @@ class GyazoUpload
     thumbfile = generate_thumbnail(file)    # いろんな方法でサムネイル生成
     if thumbfile then
       STDERR.puts "Uploading to Gyazo..."
-      gyazoid = upload_and_delete(thumbfile)  # サムネイルをGyazoにアップロードしてサムネイルファイルは削除
+      time = modtime(file) # EXIFの撮影時刻またはファイル修正時刻
+      
       (dstfile, dsturl) = dst(file)   # オリジナルファイルのコピー先ファイル名, URLを取得
+      gyazoid = upload_and_delete thumbfile, { 'time' => time, 'url' => dsturl }  # サムネイルをGyazoにアップロードしてサムネイルファイルは削除
+      STDERR.puts "Gyazo URL = http://Gyazo.com/#{gyazoid}"
+      
       #
       # クラウドにオリジナルファイルをコピー
       #
-      STDERR.puts "Copying original file <#{file}> to masui.sfc.keio.ac.jp..."
+      STDERR.puts "Copying original file <#{file}> to #{dstfile} ..."
       system "scp #{file} masui.sfc.keio.ac.jp:#{dstfile} > /dev/null 2> /dev/null"
       system "ssh masui.sfc.keio.ac.jp chmod 644 #{dstfile} > /dev/null 2> /dev/null"
       #
       # nota@gyazo.cool のプログラムを使って、日付とURLを登録
       #
-      STDERR.puts "Setting dates and urls on Gyazo.com..."
-      time = modtime(file) # EXIFの撮影時刻またはファイル修正時刻
-      command = "ssh nota@gyazo.cool sh /home/nota/masui/register '#{gyazoid}' '#{time.to_s.gsub(/ /,"\\ ")}' '#{dsturl}' > /dev/null 2> /dev/null"
-      system command
-      
-      puts "#{gyazoid}\t#{time}"
+      #STDERR.puts "Setting dates and urls on Gyazo.com..."
+      #time = modtime(file) # EXIFの撮影時刻またはファイル修正時刻
+      #command = "ssh nota@gyazo.cool sh /home/nota/masui/register '#{gyazoid}' '#{time.to_s.gsub(/ /,"\\ ")}' '#{dsturl}' > /dev/null 2> /dev/null"
+      #system command
     end
   end
 end
