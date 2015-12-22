@@ -142,5 +142,6 @@ if __FILE__ == $0 then
       assert id =~ /^[0-9a-f]{32}$/i
       assert !File.exist?(tmpfile)
     end
+    
   end
 end
