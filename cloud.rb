@@ -1,35 +1,23 @@
 # coding: utf-8
 
-require './dropbox_sdk'
-
 class GyazoUpload
   #
-  # Dropboxにアップロード
+  # ファイルをクラウドにアップロードしてURLを返す
+  # (これは増井用だがカスタマイズすればいい)
   #
   def upload(file)
-    access_token = ENV['DROPBOX_GYAZO_TOKEN']
-
-    unless access_token
-      STDERR.puts "Set the environment variable 'DROPBOX_GYAZO_TOKEN'."
-      STDERR.puts "You can get the access token using 'dropbox_get_token' program."
-      exit
-    end
-
-    STDERR.puts "Uploading to Dropbox..."
+    STDERR.puts "Uploading to cloud..."
     file =~ /\.([a-zA-Z0-9_]*)$/
     ext = $1
     hash = Digest::MD5.new.update(File.read(file)).to_s
-    dsturl = "https://www.dropbox.com/home?client=1&preview=#{hash}.#{ext}"
+    dstfile = "masui.sfc.keio.ac.jp:/Users/masui/data/#{hash[0]}/#{hash[1]}/#{hash}.#{ext}"
+    dsturl = "http://masui.sfc.keio.ac.jp/masui/data/#{hash[0]}/#{hash[1]}/#{hash}.#{ext}"
     #
-    # Dropboxにファイルをアップロード
+    # クラウドにファイルをアップロード
     #
-    STDERR.puts "Copying original file <#{file}> to Dropbox ..."
-    
-    client = DropboxClient.new(access_token)
-    file = File.open(file)
-    response = client.put_file("/#{hash}.#{ext}", file)
-    puts "uploaded:", response.inspect
-    
+    STDERR.puts "Copying original file <#{file}> to <#{dstfile}> ..."
+    system "scp #{file} #{dstfile} > /dev/null 2> /dev/null"
+    system "ssh masui.sfc.keio.ac.jp chmod 644 #{dstfile} > /dev/null 2> /dev/null"
     dsturl
   end
 end

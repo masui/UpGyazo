@@ -16,18 +16,18 @@ Usage: ```% upgyazo ファイル {ファイル}```
 
 ### Dropboxにアップロードする場合
 
-* アクセストークンが必要
-* dropbox\_get\_token スクリプトを起動する
+* 以下の方法でアクセストークンを取得して利用
+ * dropbox\_get\_token スクリプトを起動する
 
-    % ruby dropbox\_get\_token
+     % ruby dropbox\_get\_token
 
-* 指示のURLに飛んでアプリを承認するとアクセストークンが得られる
-* これを環境変数 ```DROPBOX_ACCESS_TOKEN``` に登録する
-* ```.profile``` などに ```export DROPBOX_GYAZO_TOKEN=ABCDEFG...``` などと記述しておく
+ * 指示のURLに飛んでアプリを承認するとアクセストークンが得られる
+ * これを環境変数 ```DROPBOX_ACCESS_TOKEN``` に登録する
+ * ```.profile``` などに ```export DROPBOX_GYAZO_TOKEN=ABCDEFG...``` などと記述しておく
 
 ### 増井の場合
 
-* ```scp```でCSLのサーバにバックアップしている
+* ```scp```でSFCのサーバにバックアップしている
 * ```masui.sfc.keio.ac.jp```に格納するスクリプト```cloud_masui.rb```を利用
 
 ## CI
