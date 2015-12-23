@@ -89,7 +89,7 @@ class GyazoUpload
       # 時刻とURLを指定してサムネイルをGyazoにアップロード
       # (サムネイルファイルは削除)
       #
-      gyazoid = upload_and_delete thumbfile, { 'time' => time, 'url' => dsturl }
+      gyazoid = upload_and_delete thumbfile, { :time => time, :url => dsturl }
       STDERR.puts "Gyazo URL = http://Gyazo.com/#{gyazoid}"
     end
   end
