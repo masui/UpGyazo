@@ -84,7 +84,9 @@ class GyazoUpload
     thumbfile = generate_thumbnail(file)    # いろんな方法でサムネイル生成
     if thumbfile then
       STDERR.puts "Uploading to Gyazo..."
+      
       time = modtime(file) # EXIFの撮影時刻またはファイル修正時刻
+      STDERR.puts "modtime = #{time}"
       
       (dstfile, dsturl) = dst(file)   # オリジナルファイルのコピー先ファイル名, URLを取得
       gyazoid = upload_and_delete thumbfile, { 'time' => time, 'url' => dsturl }  # サムネイルをGyazoにアップロードしてサムネイルファイルは削除
