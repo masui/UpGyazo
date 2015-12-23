@@ -1,40 +1,52 @@
 #!/usr/bin/ruby
 # coding: utf-8
 #
-# % upgyazo CIMG0123.img
-#
 # 画像の場合はサムネをアップ
 # 文書ファイルなどの場合はアイコンをアップ
 #
 
 if ARGV.length == 0
   STDERR.puts "Upload files to Gyazo"
-  STDERR.puts "Usage: % upgyazo filename"
+  STDERR.puts "Usage: % upgyazo CIMG0123.img"
+  STDERR.puts "       % upgyazo myfile.doc"
   exit
 end
 
+#
+# Gyazo.comの認証のためにGYAZO_TOKEN環境変数を利用
+# たとえば~/.profile にこう書いておく
+#   export GYAZO_TOKEN=0123456789...
+#
+GYAZO_TOKEN=ENV['GYAZO_TOKEN']
+unless GYAZO_TOKEN
+  STDERR.puts "Set the environment variable 'GYAZO_TOKEN'."
+  STDERR.puts "You can get the access token at https://gyazo.com/oauth/applications"
+  exit
+end
+
+#
+# Gyazo APIを呼ぶ本体ライブラリと、ファイルをクラウドにセーブするライブラリを呼ぶ
+#
+
 prog = $0
 prog = File.readlink(prog) if File.symlink?(prog)
-dir = File.dirname(prog)
+progdir = File.dirname(prog)
 
-require "#{dir}/upgyazo"
+require "#{progdir}/upgyazo"
+require "#{progdir}/cloud"
 
-# Gyazo.comの認証のために ~/.profile にこういうのを書いておく
-# export GYAZO_TOKEN=0123456789...
-
-GYAZO_TOKEN=ENV['GYAZO_TOKEN']
-exit if GYAZO_TOKEN.nil?
-
-upload = GyazoUpload.new GYAZO_TOKEN
+gu = GyazoUpload.new GYAZO_TOKEN
 
 ARGV.each { |arg|
-  next unless File.exist?(arg)
+  unless File.exist?(arg)
+    STDERR.puts "File/dir <#{arg}> not found"
+    next
+  end
   if File.directory?(arg) then
     Find.find(arg).each { |file|
-      upload.process file if File.file?(file)
+      gu.process file if File.file?(file)
     }
   else
-    upload.process arg
+    gu.process arg
   end
 }
-
