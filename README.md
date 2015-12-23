@@ -12,7 +12,7 @@ Usage: ```% upgyazo ファイル {ファイル}```
 * デフォルトの格納先はDropbox
 * GyazoのアップロードAPIを使うのでGyazo Tokenが必要
  * Gyazo Tokenを```~/.profile```などに ```export GYAZO_TOKEN=0123456789...``` などと書いておいて登録しておく
- * Gyazo Tokenは ```https://gyazo.com/oauth/applications``` で取得する
+ * Gyazo Tokenは [https://gyazo.com/oauth/applications](https://gyazo.com/oauth/applications) で取得する
 
 ### Dropboxにアップロードする場合
 
